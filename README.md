@@ -4,6 +4,8 @@ QRMe is a small macOS Services-menu app. Select text in another app, choose `Ser
 
 QRMe runs locally. It does not send selected text over the network, and it does not replace the selected text.
 
+![QRMe window showing selected text as a QR code](docs/qrme-screenshot.png)
+
 ## Install from a Release
 
 1. Download `QRMe.service.zip` from the latest GitHub release.
