@@ -2,19 +2,43 @@ import AppKit
 import QRMeCore
 
 final class QRPresenter {
-    private var windowController: QRWindowController?
+    private var qrWindowController: QRWindowController?
+    private var resultWindowController: QRResultWindowController?
 
     func show(text: String) {
         do {
             let image = try QRImageGenerator.makeImage(from: text)
             let controller = QRWindowController(text: text, image: image)
-            windowController = controller
-            controller.showWindow(nil)
-            controller.window?.makeKeyAndOrderFront(nil)
-            activateApp()
+            qrWindowController = controller
+            present(controller)
         } catch {
             showError(error.localizedDescription)
         }
+    }
+
+    func read(image: NSImage) {
+        do {
+            let payloads = try QRCodeDecoder.decode(from: image)
+            let controller = QRResultWindowController(payloads: payloads)
+            resultWindowController = controller
+            present(controller)
+        } catch {
+            showError(error.localizedDescription)
+        }
+    }
+
+    func read(fileURL: URL) {
+        guard let image = NSImage(contentsOf: fileURL) else {
+            showError(QRMeError.imageUnreadable.localizedDescription)
+            return
+        }
+        read(image: image)
+    }
+
+    private func present(_ controller: NSWindowController) {
+        controller.showWindow(nil)
+        controller.window?.makeKeyAndOrderFront(nil)
+        activateApp()
     }
 
     private func showError(_ message: String) {

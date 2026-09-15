@@ -12,6 +12,14 @@ enum AppMenu {
 
         appMenu.addItem(
             NSMenuItem(
+                title: "Open QR Code…",
+                action: #selector(AppDelegate.openQRCode(_:)),
+                keyEquivalent: "o"
+            )
+        )
+
+        appMenu.addItem(
+            NSMenuItem(
                 title: "Show Sample QR Code",
                 action: #selector(AppDelegate.showSampleQRCode(_:)),
                 keyEquivalent: "n"

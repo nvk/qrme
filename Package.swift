@@ -23,6 +23,10 @@ let package = Package(
         .executableTarget(
             name: "QRMe",
             dependencies: ["QRMeCore"]
+        ),
+        .testTarget(
+            name: "QRMeCoreTests",
+            dependencies: ["QRMeCore"]
         )
     ]
 )

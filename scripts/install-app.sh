@@ -17,4 +17,4 @@ cp -R "$APP_DIR" "$DEST_APP"
 "$DEST_APP/Contents/MacOS/QRMe" --refresh-services >/dev/null 2>&1 || true
 
 echo "Installed $DEST_APP"
-echo "Select text in another app, then use Services > QRMe."
+echo "Use Services > Create QR Code for text or Services > Read QR Code for images."
